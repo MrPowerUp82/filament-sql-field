@@ -1,7 +1,14 @@
 <x-dynamic-component :component="$getFieldWrapperView()" :field="$field">
-    <div x-data="{ state: $wire.entangle('{{ $getStatePath() }}'), tables: {{ $getDatabaseTables() }}, isDark: {{ $getDark() }} }" x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('codemirror5-css-cdn', package: 'mrpowerup/filament-sql-field'))]" x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('codemirror5-js-cdn', package: 'mrpowerup/filament-sql-field'))]"
-        x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('matchbrackets-js-cdn', package: 'mrpowerup/filament-sql-field'))]" x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('sql-js-cdn', package: 'mrpowerup/filament-sql-field'))]" x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('showhint-css-cdn', package: 'mrpowerup/filament-sql-field'))]"
-        x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('showhint-js-cdn', package: 'mrpowerup/filament-sql-field'))]" x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('dracula-theme', package: 'mrpowerup/filament-sql-field'))]" x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('sqlhint-js-cdn', package: 'mrpowerup/filament-sql-field'))]">
+    <link rel="stylesheet" href="{{ asset('css/mrpowerup/filament-sql-field/codemirror5-css-cdn.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/mrpowerup/filament-sql-field/showhint-css-cdn.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/mrpowerup/filament-sql-field/dracula-theme.css') }}" />
+    <script src="{{ asset('js/mrpowerup/filament-sql-field/codemirror5-js-cdn.js') }}"></script>
+    <script src="{{ asset('js/mrpowerup/filament-sql-field/matchbrackets-js-cdn.js') }}"></script>
+    <script src="{{ asset('js/mrpowerup/filament-sql-field/sql-js-cdn.js') }}"></script>
+    <script src="{{ asset('js/mrpowerup/filament-sql-field/showhint-js-cdn.js') }}"></script>
+    <script src="{{ asset('js/mrpowerup/filament-sql-field/sqlhint-js-cdn.js') }}"></script>
+
+    <div x-data="{ state: $wire.entangle('{{ $getStatePath() }}'), tables: {{ $getDatabaseTables() }}, isDark: {{ $getDark() }} }">
         <div style="width: 100%; font-size: 0.875rem; line-height: 1.25rem;" x-init="() => {
             $nextTick(() => {
                 const options = {
