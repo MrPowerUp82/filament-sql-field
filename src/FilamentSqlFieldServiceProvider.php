@@ -33,14 +33,14 @@ class FilamentSqlFieldServiceProvider extends PackageServiceProvider
     public function packageBooted(): void
     {
         FilamentAsset::register([
-            Css::make("codemirror5-css-cdn", "https://codemirror.net/5/lib/codemirror.css"),
-            Css::make("showhint-css-cdn", "https://codemirror.net/5/addon/hint/show-hint.css"),
-            Css::make("dracula-theme", "https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/dracula.min.css"),
-            Js::make("codemirror5-js-cdn", "https://codemirror.net/5/lib/codemirror.js"),
-            Js::make("matchbrackets-js-cdn", "https://codemirror.net/5/addon/edit/matchbrackets.js"),
-            Js::make("sql-js-cdn", "https://codemirror.net/5/mode/sql/sql.js"),
-            Js::make("showhint-js-cdn", "https://codemirror.net/5/addon/hint/show-hint.js"),
-            Js::make("sqlhint-js-cdn", "https://codemirror.net/5/addon/hint/sql-hint.js"),
+            Css::make("codemirror5-css-cdn", __DIR__ . '/../resources/css/codemirror.css'),
+            Css::make("showhint-css-cdn", __DIR__ . '/../resources/css/show-hint.css'),
+            Css::make("dracula-theme", __DIR__ . '/../resources/css/dracula.min.css'),
+            Js::make("codemirror5-js-cdn", __DIR__ . '/../resources/js/codemirror.js'),
+            Js::make("matchbrackets-js-cdn", __DIR__ . '/../resources/js/matchbrackets.js'),
+            Js::make("sql-js-cdn", __DIR__ . '/../resources/js/sql.js'),
+            Js::make("showhint-js-cdn", __DIR__ . '/../resources/js/show-hint.js'),
+            Js::make("sqlhint-js-cdn", __DIR__ . '/../resources/js/sql-hint.js'),
         ]);
     }
 

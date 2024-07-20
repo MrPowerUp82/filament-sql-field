@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class FilamentSqlField extends Field
 {
-    // protected string $view = 'sql-input.index';
     protected string $view = 'filament-sql-field::index';
     protected int $editorHeight = 300;
     protected array $tables = [];
