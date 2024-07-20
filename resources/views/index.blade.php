@@ -23,9 +23,16 @@
             });
         });
     }"
-        x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('codemirror', package: 'mrpowerup/filament-sql-field'))]" x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('codemirror', package: 'mrpowerup/filament-sql-field'))]" x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('matchbrackets', package: 'mrpowerup/filament-sql-field'))]"
-        x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('sql', package: 'mrpowerup/filament-sql-field'))]" x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('show-hint', package: 'mrpowerup/filament-sql-field'))]" x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('show-hint', package: 'mrpowerup/filament-sql-field'))]"
-        x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('dracula.min', package: 'mrpowerup/filament-sql-field'))]" x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('sql-hint', package: 'mrpowerup/filament-sql-field'))]" x-cloak wire:ignore>
+    x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('codemirror5-css-cdn', package: 'mrpowerup/filament-sql-field'))]"
+    x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('codemirror5-js-cdn', package: 'mrpowerup/filament-sql-field'))]"
+    x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('matchbrackets-js-cdn', package: 'mrpowerup/filament-sql-field'))]"
+    x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('sql-js-cdn', package: 'mrpowerup/filament-sql-field'))]"
+    x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('showhint-css-cdn', package: 'mrpowerup/filament-sql-field'))]"
+    x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('showhint-js-cdn', package: 'mrpowerup/filament-sql-field'))]"
+    x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('dracula-theme', package: 'mrpowerup/filament-sql-field'))]"
+    x-load-js="[@js(\Filament\Support\Facades\FilamentAsset::getScriptSrc('sqlhint-js-cdn', package: 'mrpowerup/filament-sql-field'))]"    
+    x-cloak
+        wire:ignore>
         <textarea x-ref="editor" x-bind:value="state"></textarea>
     </div>
 </x-dynamic-component>
