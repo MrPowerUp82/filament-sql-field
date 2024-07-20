@@ -20,6 +20,9 @@ class FilamentSqlField extends Field
     {
         $tables = DB::select('SHOW TABLES');
         $tableNames = array_map('current', $tables);
+        if (empty($tableNames)) {
+            return json_encode([]);
+        }
         $tablesAndColumns = [];
         foreach ($tableNames as $table) {
             $columns = DB::select("SHOW COLUMNS FROM {$table}");
