@@ -32,15 +32,15 @@ class FilamentSqlFieldServiceProvider extends PackageServiceProvider
     public function packageBooted(): void
     {
         FilamentAsset::register([
-            Css::make("codemirror5-css-cdn", __DIR__ . '/../resources/css/codemirror.css'),
-            Css::make("showhint-css-cdn", __DIR__ . '/../resources/css/show-hint.css'),
-            Css::make("dracula-theme", __DIR__ . '/../resources/css/dracula.min.css'),
-            Js::make("codemirror5-js-cdn", __DIR__ . '/../resources/js/codemirror.js'),
-            Js::make("matchbrackets-js-cdn", __DIR__ . '/../resources/js/matchbrackets.js'),
-            Js::make("sql-js-cdn", __DIR__ . '/../resources/js/sql.js'),
-            Js::make("showhint-js-cdn", __DIR__ . '/../resources/js/show-hint.js'),
-            Js::make("sqlhint-js-cdn", __DIR__ . '/../resources/js/sql-hint.js'),
-        ]);
+            Css::make("codemirror5-css-cdn", __DIR__ . '/../resources/css/codemirror.css')->loadedOnRequest(),
+            Js::make("codemirror5-js-cdn", __DIR__ . '/../resources/js/codemirror.js')->loadedOnRequest(),
+            Css::make("showhint-css-cdn", __DIR__ . '/../resources/css/show-hint.css')->loadedOnRequest(),
+            Css::make("dracula-theme", __DIR__ . '/../resources/css/dracula.min.css')->loadedOnRequest(),
+            Js::make("showhint-js-cdn", __DIR__ . '/../resources/js/show-hint.js')->loadedOnRequest(),
+            Js::make("matchbrackets-js-cdn", __DIR__ . '/../resources/js/matchbrackets.js')->loadedOnRequest(),
+            Js::make("sql-js-cdn", __DIR__ . '/../resources/js/sql.js')->loadedOnRequest(),
+            Js::make("sqlhint-js-cdn", __DIR__ . '/../resources/js/sql-hint.js')->loadedOnRequest(),
+        ], 'mrpowerup/filament-sql-field');
     }
 
     // public function register()
