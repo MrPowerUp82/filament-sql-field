@@ -3,6 +3,11 @@
     "description": "And a field to write SQL sentences using codemirror 5.",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "MrPowerUp",
+        "laravel",
+        "filament-sql-field"
+    ],
     "authors": [
         {
             "name": "MrPowerUp82",
