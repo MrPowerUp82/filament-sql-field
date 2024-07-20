@@ -7,7 +7,6 @@ use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Illuminate\Support\ServiceProvider;
 
 class FilamentSqlFieldServiceProvider extends PackageServiceProvider
 {
@@ -15,10 +14,10 @@ class FilamentSqlFieldServiceProvider extends PackageServiceProvider
 
     public static string $viewNamespace = 'filament-sql-field';
 
-    public function boot()
-    {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'filament-sql-field');
-    }
+    // public function boot()
+    // {
+    //     $this->loadViewsFrom(__DIR__ . '/../resources/views', 'filament-sql-field');
+    // }
     public function configurePackage(Package $package): void
     {
         /*
@@ -44,8 +43,8 @@ class FilamentSqlFieldServiceProvider extends PackageServiceProvider
         ]);
     }
 
-     public function register()
-    {
-        // Register any package services.
-    }
+    // public function register()
+    // {
+    //     // Register any package services.
+    // }
 }

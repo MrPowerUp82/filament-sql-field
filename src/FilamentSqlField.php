@@ -3,8 +3,6 @@
 namespace MrPowerUp\FilamentSqlField;
 
 use Filament\Forms\Components\Field;
-use Closure;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Facades\DB;
 
 class FilamentSqlField extends Field
@@ -20,7 +18,6 @@ class FilamentSqlField extends Field
     }
     public function getDatabaseTables(): string
     {
-        // $databaseName = DB::connection()->getDatabaseName();
         $tables = DB::select('SHOW TABLES');
         $tableNames = array_map('current', $tables);
         $tablesAndColumns = [];
