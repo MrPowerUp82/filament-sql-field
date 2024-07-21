@@ -38,7 +38,7 @@ class FilamentSqlFieldServiceProvider extends PackageServiceProvider
             Css::make("dracula-theme", __DIR__ . '/../resources/css/dracula.min.css')->loadedOnRequest(),
             Css::make("fullscreen-css-mode", __DIR__ . '/../resources/css/fullscreen.min.css')->loadedOnRequest(),
             Js::make("showhint-js-cdn", __DIR__ . '/../resources/js/show-hint.js')->loadedOnRequest(),
-            JS::make("fullscreen-js-mode", __DIR__ . '/../resources/css/fullscreen.min.js')->loadedOnRequest(),
+            JS::make("fullscreen-js-mode", __DIR__ . '/../resources/js/fullscreen.min.js')->loadedOnRequest(),
             Js::make("matchbrackets-js-cdn", __DIR__ . '/../resources/js/matchbrackets.js')->loadedOnRequest(),
             Js::make("sql-js-cdn", __DIR__ . '/../resources/js/sql.js')->loadedOnRequest(),
             Js::make("sqlhint-js-cdn", __DIR__ . '/../resources/js/sql-hint.js')->loadedOnRequest(),
