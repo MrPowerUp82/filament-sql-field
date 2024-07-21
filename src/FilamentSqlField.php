@@ -11,6 +11,7 @@ class FilamentSqlField extends Field
     protected int $editorHeight = 300;
     protected array $tables = [];
     protected bool $dark = false;
+    protected bool $fullscreen = false;
     protected function setUp(): void
     {
         $this->tables = json_decode($this->getDatabaseTables(), true);
@@ -33,7 +34,7 @@ class FilamentSqlField extends Field
     }
     public function getEditorHeight(): string
     {
-        return $this->editorHeight.'px';
+        return $this->editorHeight;
     }
 
     public function editorHeight(int $heightInPx): static
@@ -49,6 +50,16 @@ class FilamentSqlField extends Field
     public function dark(bool $dark = true): static
     {
         $this->dark = $dark;
+
+        return $this;
+    }
+    public function getFullscreen(): string
+    {
+        return $this->fullscreen ? 'true' : 'false';
+    }
+    public function fullscreen(bool $fullscreen = true): static
+    {
+        $this->fullscreen = $fullscreen;
 
         return $this;
     }
