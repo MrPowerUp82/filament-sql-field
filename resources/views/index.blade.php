@@ -10,11 +10,14 @@
     <script src="{{ asset('js/mrpowerup/filament-sql-field/fullscreen-js-mode.js') }}"></script>
     <script src="{{ asset('js/mrpowerup/filament-sql-field/sqlhint-js-cdn.js') }}"></script>
 
-    <div x-data="{ state: $wire.entangle('{{ $getStatePath() }}'), tables: {{ $getDatabaseTables() }}, isDark: {{ $getDark() }}, allowFullscreen: {{$getFullscreen()}} }">
+    <div x-data="{ state: $wire.entangle('{{ $getStatePath() }}'), tables: {{ $getDatabaseTables() }}, isDark: {{ $getDark() }}, 
+    allowFullscreen: {{$getFullscreen()}},
+    mime: '{{ $getMime() }}'
+    }">
         <div style="width: 100%; font-size: 0.875rem; line-height: 1.25rem;" x-init="() => {
             $nextTick(() => {
                 const options = {
-                    mode: 'text/x-mysql',
+                    mode: mime,
                     indentWithTabs: true,
                     smartIndent: true,
                     lineNumbers: true,

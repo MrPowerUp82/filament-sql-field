@@ -12,6 +12,7 @@ class FilamentSqlField extends Field
     protected array $tables = [];
     protected bool $dark = false;
     protected bool $fullscreen = false;
+    protected string $mime = "text/x-mysql";
     protected function setUp(): void
     {
         $this->tables = json_decode($this->getDatabaseTables(), true);
@@ -60,6 +61,16 @@ class FilamentSqlField extends Field
     public function fullscreen(bool $fullscreen = true): static
     {
         $this->fullscreen = $fullscreen;
+
+        return $this;
+    }
+    public function getMime(): string
+    {
+        return $this->mime;
+    }
+    public function mime(string $mime): static
+    {
+        $this->mime = $mime;
 
         return $this;
     }
