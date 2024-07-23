@@ -27,7 +27,7 @@ class FilamentSqlField extends Field
         }
         $tablesAndColumns = [];
         foreach ($tableNames as $table) {
-            $columns = DB::select("SHOW COLUMNS FROM {$table}");
+            $columns = DB::select("SHOW COLUMNS FROM `{$table}`");
             $columnNames = array_map(fn($column) => $column->Field, $columns);
             $tablesAndColumns[$table] = $columnNames;
         }
