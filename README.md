@@ -1,7 +1,7 @@
 # filament-sql-field
 
-![image](example_1.png)
-![image](example_2.png)
+![image](https://raw.githubusercontent.com/MrPowerUp82/filament-sql-field/main/example_1.png)
+![image](https://raw.githubusercontent.com/MrPowerUp82/filament-sql-field/main/example_2.png)
 
 ## Installation
 
@@ -22,7 +22,7 @@ public static function form(Form $form): Form
         return $form
             ->schema([
                     FilamentSqlField::make('sql')
-                    ->mime('text/x-mysql')
+                    ->mime('text/x-mysql') // Define MIME Type
                     ->fullscreen() // Allow Fullscreen mode
                     ->hintIcon('heroicon-m-question-mark-circle', tooltip: "F11: Fullscreen | Ctrl + Space: Autocomplete | ESC: Exit Fullscreen mode")
                     ->editorHeight(300) // Set height of editor
@@ -50,6 +50,22 @@ public static function form(Form $form): Form
 - text/x-sparksql
 - text/x-trino
 
+### If you need to update the editor value with dispatch here is an example:
+
+```php
+$this->dispatch('updatePlugin', $record->sql);
+```
+
+```html
+@script
+    <script>
+        $wire.on('updatePlugin', (event) => {
+            window.editor.setValue(event[0]);
+        });
+    </script>
+@endscript
+```
+
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](https://raw.githubusercontent.com/MrPowerUp82/filament-sql-field/main/LICENSE.md) for more information.
