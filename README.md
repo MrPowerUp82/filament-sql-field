@@ -27,6 +27,8 @@ public static function form(Form $form): Form
                     ->hintIcon('heroicon-m-question-mark-circle', tooltip: "F11: Fullscreen | Ctrl + Space: Autocomplete | ESC: Exit Fullscreen mode")
                     ->editorHeight(300) // Set height of editor
                     ->dark() // Switch to Dark theme (Dracula Theme)
+                    ->autoGetTables() // Automatically get tables from database
+                    ->tables(['table1' => ['column1', 'column2', 'column3'], 'table2' => ['column1', 'column2', 'column3']]) // Define tables and columns
                     ->default("SELECT * FROM users WHERE 1;")
                     ->columnSpanFull(),
             ]);

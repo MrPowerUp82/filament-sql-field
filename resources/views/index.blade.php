@@ -10,7 +10,7 @@
     <script src="{{ asset('js/mrpowerup/filament-sql-field/fullscreen-js-mode.js') }}"></script>
     <script src="{{ asset('js/mrpowerup/filament-sql-field/sqlhint-js-cdn.js') }}"></script>
 
-    <div x-data="{ state: $wire.entangle('{{ $getStatePath() }}'), tables: {{ $getDatabaseTables() }}, isDark: {{ $getDark() }}, 
+    <div x-data="{ state: $wire.entangle('{{ $getStatePath() }}'), tables: {{ $getTables() }}, isDark: {{ $getDark() }}, 
     allowFullscreen: {{$getFullscreen()}},
     mime: '{{ $getMime() }}'
     }">

@@ -13,12 +13,7 @@ class FilamentSqlField extends Field
     protected bool $dark = false;
     protected bool $fullscreen = false;
     protected string $mime = "text/x-mysql";
-    protected function setUp(): void
-    {
-        $this->tables = json_decode($this->getDatabaseTables(), true);
-        parent::setUp();
-    }
-    public function getDatabaseTables(): string
+    protected function getDatabaseTables(): string
     {
         $tables = DB::select('SHOW TABLES');
         $tableNames = array_map('current', $tables);
@@ -32,6 +27,14 @@ class FilamentSqlField extends Field
             $tablesAndColumns[$table] = $columnNames;
         }
         return json_encode($tablesAndColumns);
+    }
+    protected function setUp(): void
+    {
+        parent::setUp();
+    }
+    public function getTables(): string
+    {
+        return json_encode($this->tables);
     }
     public function getEditorHeight(): string
     {
@@ -71,6 +74,25 @@ class FilamentSqlField extends Field
     public function mime(string $mime): static
     {
         $this->mime = $mime;
+
+        return $this;
+    }
+    public function autoGetTables(): static
+    {
+        $this->tables = json_decode($this->getDatabaseTables(), true);
+
+        return $this;
+    }
+    /**
+     * Set the tables for the SQL field.
+     *
+     * @param array $tables The tables to be used.
+     * Example: ['table1' => ['column1', 'column2', 'column3'], 'table2' => ['column1', 'column2', 'column3']]
+     * @return static
+     */
+    public function tables(array $tables): static
+    {
+        $this->tables = $tables;
 
         return $this;
     }
