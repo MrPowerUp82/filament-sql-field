@@ -16,6 +16,9 @@
     }">
         <div style="width: 100%; font-size: 0.875rem; line-height: 1.25rem;" x-init="() => {
             $nextTick(() => {
+                if (isDark == null){
+                    isDark =  (localStorage.getItem('theme') == 'system' || localStorage.getItem('theme') == null) ? window.matchMedia('(prefers-color-scheme: dark)').matches : localStorage.getItem('theme') == 'dark';
+                }
                 const options = {
                     mode: mime,
                     indentWithTabs: true,

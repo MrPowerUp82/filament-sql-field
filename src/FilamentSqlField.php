@@ -10,7 +10,7 @@ class FilamentSqlField extends Field
     protected string $view = 'filament-sql-field::index';
     protected int $editorHeight = 300;
     protected array $tables = [];
-    protected bool $dark = false;
+    protected ?bool $dark = null;
     protected bool $fullscreen = false;
     protected string $mime = "text/x-mysql";
     protected function getDatabaseTables(): string
@@ -49,7 +49,11 @@ class FilamentSqlField extends Field
     }
     public function getDark(): string
     {
-        return $this->dark ? 'true' : 'false';
+        return match ($this->dark) {
+            true => 'true',
+            false => 'false',
+            default => 'null',
+        };
     }
     public function dark(bool $dark = true): static
     {
