@@ -3,11 +3,6 @@
 ![image](https://raw.githubusercontent.com/MrPowerUp82/filament-sql-field/main/example_1.png)
 ![image](https://raw.githubusercontent.com/MrPowerUp82/filament-sql-field/main/example_2.png)
 
-## Links
-
-- [Source Code](https://github.com/MrPowerUp82/filament-sql-field)
-- [Packagist](https://packagist.org/packages/mrpowerup/filament-sql-field)
-
 ## Installation
 
 You can install the package via composer:
@@ -72,6 +67,11 @@ $this->dispatch('updatePlugin', $record->sql);
     </script>
 @endscript
 ```
+
+## Links
+
+- [Source Code](https://github.com/MrPowerUp82/filament-sql-field)
+- [Packagist](https://packagist.org/packages/mrpowerup/filament-sql-field)
 
 ## License
 
