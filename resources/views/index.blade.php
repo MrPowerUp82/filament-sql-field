@@ -10,14 +10,17 @@
     <script src="{{ asset('js/mrpowerup/filament-sql-field/fullscreen-js-mode.js') }}"></script>
     <script src="{{ asset('js/mrpowerup/filament-sql-field/sqlhint-js-cdn.js') }}"></script>
 
-    <div x-data="{ state: $wire.entangle('{{ $getStatePath() }}'), tables: {{ $getTables() }}, isDark: {{ $getDark() }}, 
-    allowFullscreen: {{$getFullscreen()}},
-    mime: '{{ $getMime() }}'
+    <div x-data="{
+        state: $wire.entangle('{{ $getStatePath() }}'),
+        tables: {{ $getTables() }},
+        isDark: {{ $getDark() }},
+        allowFullscreen: {{ $getFullscreen() }},
+        mime: '{{ $getMime() }}'
     }">
         <div style="width: 100%; font-size: 0.875rem; line-height: 1.25rem;" x-init="() => {
             $nextTick(() => {
-                if (isDark == null){
-                    isDark =  (localStorage.getItem('theme') == 'system' || localStorage.getItem('theme') == null) ? window.matchMedia('(prefers-color-scheme: dark)').matches : localStorage.getItem('theme') == 'dark';
+                if (isDark == null) {
+                    isDark = (localStorage.getItem('theme') == 'system' || localStorage.getItem('theme') == null) ? window.matchMedia('(prefers-color-scheme: dark)').matches : localStorage.getItem('theme') == 'dark';
                 }
                 const options = {
                     mode: mime,
@@ -41,22 +44,28 @@
                 });
                 window.editor.setSize(null, {{ $getEditorHeight() }});
                 if (allowFullscreen) {
-                    window.editor.options.extraKeys = {...window.editor.options.extraKeys, 
-                    'F11': function (cm) {
-                    console.log(cm.getOption('fullScreen'));
-                    cm.setOption('fullScreen', !cm.getOption('fullScreen'));
-                },
-                'Esc': function (cm) {
-                    if (cm.getOption('fullScreen')) cm.setOption('fullScreen', false);
-                }
+                    window.editor.options.extraKeys = {
+                        ...window.editor.options.extraKeys,
+                        'F11': function(cm) {
+                            console.log(cm.getOption('fullScreen'));
+                            cm.setOption('fullScreen', !cm.getOption('fullScreen'));
+                        },
+                        'Esc': function(cm) {
+                            if (cm.getOption('fullScreen')) cm.setOption('fullScreen', false);
+                        }
                     }
                 }
             });
         }" x-cloak wire:ignore>
-            <textarea x-ref="editor" x-bind:value="state"
-            style="min-height: 30vh;height:{{ $getEditorHeight() }}"
-            ></textarea>
+            <textarea x-ref="editor" x-bind:value="state" style="min-height: 30vh;height:{{ $getEditorHeight() }}"></textarea>
         </div>
     </div>
 
+    @script
+        <script>
+            $wire.on('updatePlugin', (event) => {
+                window.editor.setValue(event[0]);
+            });
+        </script>
+    @endscript
 </x-dynamic-component>

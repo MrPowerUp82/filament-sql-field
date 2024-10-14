@@ -13,28 +13,30 @@ class FilamentSqlField extends Field
     protected ?bool $dark = null;
     protected bool $fullscreen = false;
     protected string $mime = "text/x-mysql";
+    protected string $connection = 'mysql';
     protected function getDatabaseTables(): string
     {
-        $tables = DB::select('SHOW TABLES');
+        $tables = DB::connection($this->connection)->select('SHOW TABLES');
         $tableNames = array_map('current', $tables);
         if (empty($tableNames)) {
             return json_encode([]);
         }
         $tablesAndColumns = [];
         foreach ($tableNames as $table) {
-            $columns = DB::select("SHOW COLUMNS FROM `{$table}`");
+            $columns = DB::connection($this->connection)->select("SHOW COLUMNS FROM $table");
             $columnNames = array_map(fn($column) => $column->Field, $columns);
             $tablesAndColumns[$table] = $columnNames;
         }
-        return json_encode($tablesAndColumns);
+        return json_encode($tablesAndColumns, JSON_UNESCAPED_UNICODE);
     }
     protected function setUp(): void
     {
         parent::setUp();
+        $this->hintIcon('heroicon-m-question-mark-circle', tooltip: __('filament-sql-field::filament-sql-field.field.tooltip.text'));
     }
     public function getTables(): string
     {
-        return json_encode($this->tables);
+        return json_encode($this->tables, JSON_UNESCAPED_UNICODE);
     }
     public function getEditorHeight(): string
     {
@@ -99,5 +101,15 @@ class FilamentSqlField extends Field
         $this->tables = $tables;
 
         return $this;
+    }
+    public function connection(string $connection): static
+    {
+        $this->connection = $connection;
+
+        return $this;
+    }
+    public function getConnection(): string
+    {
+        return $this->connection;
     }
 }

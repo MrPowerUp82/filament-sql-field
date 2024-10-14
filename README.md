@@ -22,15 +22,27 @@ public static function form(Form $form): Form
         return $form
             ->schema([
                     FilamentSqlField::make('sql')
-                    ->mime('text/x-mysql') // Define MIME Type
-                    ->fullscreen() // Allow Fullscreen mode
-                    ->hintIcon('heroicon-m-question-mark-circle', tooltip: "F11: Fullscreen | Ctrl + Space: Autocomplete | ESC: Exit Fullscreen mode")
-                    ->editorHeight(300) // Set height of editor
-                    ->dark() // Switch to Dark theme (Dracula Theme)
-                    ->autoGetTables() // Automatically get tables from database
-                    ->tables(['table1' => ['column1', 'column2', 'column3'], 'table2' => ['column1', 'column2', 'column3']]) // Define tables and columns
-                    ->default("SELECT * FROM users WHERE 1;")
-                    ->columnSpanFull(),
+                        ->mime('text/x-mysql') // Define MIME Type
+                        ->fullscreen() // Allow Fullscreen mode
+                        // ->hintIcon('heroicon-m-question-mark-circle', tooltip: "F11: Fullscreen | Ctrl + Space: Autocomplete | ESC: Exit Fullscreen mode")
+                        ->connection('mysql') // Set connection
+                        ->autoGetTables() // Automatically get tables from database
+                        ->editorHeight(300) // Set height of editor
+                        ->dark() // Switch to Dark theme (Dracula Theme)
+                        ->default("SELECT * FROM users WHERE 1;") // Default SQL
+                        ->tables([
+                            'table1' => [
+                                'column1',
+                                'column2',
+                                'column3'
+                            ],
+                            'table2' => [
+                                'column1',
+                                'column2',
+                                'column3'
+                            ]
+                        ]) // Manually set tables
+                        ->columnSpanFull(),
             ]);
     }
 ```
@@ -55,8 +67,10 @@ public static function form(Form $form): Form
 ### If you need to update the editor value with dispatch here is an example:
 
 ```php
-$this->dispatch('updatePlugin', $record->sql);
+$this->dispatch('updatePlugin', 'SELECT * FROM table_name WHERE 1;');
 ```
+
+#### Optional (Already included in the view)
 
 ```html
 @script
