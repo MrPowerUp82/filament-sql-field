@@ -2,23 +2,19 @@
 
 namespace MrPowerUp\FilamentSqlField;
 
-use Cache;
-use Filament\Forms\Components\Section;
+use Illuminate\Support\Facades\Cache;
+use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Actions\Action;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\ToggleButtons;
 use MrPowerUp\FilamentSqlField\Traits\ReportProcessing;
 use Filament\Notifications\Notification;
-use Filament\Notifications\Actions\Action as NotificationAction;
 use Illuminate\Support\Facades\DB;
-use Filament\Infolists\Infolist;
-use Filament\Infolists\Components;
 use Illuminate\Contracts\View\View;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Get;
-use Filament\Forms\Components\Grid;
-
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Grid;
 
 class FilamentSqlSection extends Section
 {
@@ -34,7 +30,7 @@ class FilamentSqlSection extends Section
     {
         parent::setUp();
         $this->id('sqlSection');
-        $this->headerActions([
+        $this->afterHeader([
             Action::make('exportHeader')
                 ->form([
                     // Select::make('connection')
@@ -299,7 +295,7 @@ class FilamentSqlSection extends Section
                 ->label(__('filament-sql-field::filament-sql-field.section.actions.mountSelect.title')),
 
         ]);
-        $this->footerActions([
+        $this->footer([
             Action::make('dark')
                 ->icon('heroicon-o-moon')
                 ->iconButton()
@@ -420,7 +416,7 @@ class FilamentSqlSection extends Section
                 ->persistent()
                 ->body(__('filament-sql-field::filament-sql-field.section.notifications.export.success.body'))
                 ->actions([
-                    NotificationAction::make('view')
+                    Action::make('view')
                         ->label('Download')
                         ->button()
                         ->url($url, shouldOpenInNewTab: true)
