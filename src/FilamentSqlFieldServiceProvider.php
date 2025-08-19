@@ -43,6 +43,10 @@ class FilamentSqlFieldServiceProvider extends PackageServiceProvider
             Js::make("matchbrackets-js-cdn", __DIR__ . '/../resources/js/matchbrackets.js')->loadedOnRequest(),
             Js::make("sql-js-cdn", __DIR__ . '/../resources/js/sql.js')->loadedOnRequest(),
             Js::make("sqlhint-js-cdn", __DIR__ . '/../resources/js/sql-hint.js')->loadedOnRequest(),
+            Js::make("sql-formatter-js-cdn", __DIR__ . '/../resources/js/sql-formatter.min.js')->loadedOnRequest(),
+            Js::make("sql-parser-js-cdn", __DIR__ . '/../resources/js/sqlParser.min.js')->loadedOnRequest(),
+            Js::make("searchcursor-js-cdn", __DIR__ . '/../resources/js/searchcursor.js')->loadedOnRequest(),
+            Js::make("mark-selection-js-cdn", __DIR__ . '/../resources/js/mark-selection.js')->loadedOnRequest(),
         ], 'mrpowerup/filament-sql-field');
     }
 

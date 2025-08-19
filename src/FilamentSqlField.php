@@ -2,6 +2,7 @@
 
 namespace MrPowerUp\FilamentSqlField;
 
+use Cache;
 use Filament\Forms\Components\Field;
 use Illuminate\Support\Facades\DB;
 
@@ -16,6 +17,20 @@ class FilamentSqlField extends Field
     protected string $connection = 'mysql';
     protected function getDatabaseTables(): string
     {
+        if ($this->connection === 'sqlite') {
+            $tables = DB::connection($this->connection)->select("SELECT name FROM sqlite_master WHERE type='table'");
+            $tableNames = array_map(fn($table) => $table->name, $tables);
+            if (empty($tableNames)) {
+                return json_encode([]);
+            }
+            $tablesAndColumns = [];
+            foreach ($tableNames as $table) {
+                $columns = DB::connection($this->connection)->select("PRAGMA table_info($table)");
+                $columnNames = array_map(fn($column) => $column->name, $columns);
+                $tablesAndColumns[$table] = $columnNames;
+            }
+            return json_encode($tablesAndColumns, JSON_UNESCAPED_UNICODE);
+        }
         $tables = DB::connection($this->connection)->select('SHOW TABLES');
         $tableNames = array_map('current', $tables);
         if (empty($tableNames)) {
@@ -32,7 +47,10 @@ class FilamentSqlField extends Field
     protected function setUp(): void
     {
         parent::setUp();
+        $this->connection(Cache::get('filament-sql-field::changeConnection')['connection'] ?? config('database.default'));
+        $this->mime(Cache::get('filament-sql-field::changeMime')['mime'] ?? 'text/x-mysql');
         $this->hintIcon('heroicon-m-question-mark-circle', tooltip: __('filament-sql-field::filament-sql-field.field.tooltip.text'));
+        $this->label(__('filament-sql-field::filament-sql-field.field.label.text') . ' (' . Cache::get('filament-sql-field::changeConnection')['connection'] . ')'. ' (' . Cache::get('filament-sql-field::changeMime')['mime'] . ')');
     }
     public function getTables(): string
     {
@@ -80,7 +98,12 @@ class FilamentSqlField extends Field
     public function mime(string $mime): static
     {
         $this->mime = $mime;
-
+        Cache::forget('filament-sql-field::changeMime');
+        Cache::rememberForever('filament-sql-field::changeMime', function () use ($mime) {
+            return [
+                'mime' => $this->mime,
+            ];
+        });
         return $this;
     }
     public function autoGetTables(): static
@@ -105,11 +128,19 @@ class FilamentSqlField extends Field
     public function connection(string $connection): static
     {
         $this->connection = $connection;
-
+        Cache::forget('filament-sql-field::changeConnection');
+        Cache::rememberForever('filament-sql-field::changeConnection', function () use ($connection) {
+            return [
+                'connection' => $this->connection,
+            ];
+        });
         return $this;
     }
     public function getConnection(): string
     {
         return $this->connection;
+    }
+    public function getTranslations(): array|string|null{
+        return json_encode(__('filament-sql-field::filament-sql-field.field'), JSON_UNESCAPED_UNICODE);
     }
 }
