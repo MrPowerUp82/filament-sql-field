@@ -15,6 +15,18 @@ You can install the package via composer:
 composer require mrpowerup/filament-sql-field
 ```
 
+Or if you want to use 1.x version of the package you can use:
+
+```bash
+composer require mrpowerup/filament-sql-field "^1.0"
+```
+
+Or if you want to use 2.x version of the package you can use:
+
+```bash
+composer require mrpowerup/filament-sql-field "^2.0"
+```
+
 ## Usage
 ```php
 use MrPowerUp\FilamentSqlField\FilamentSqlSection;
