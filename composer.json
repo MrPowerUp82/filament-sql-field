@@ -21,7 +21,7 @@
         "php": "^8.2",
         "filament/forms": "^4.0",
         "spatie/laravel-package-tools": "^1.15.0",
-        "pxlrbt/filament-excel": "^2.3"
+        "pxlrbt/filament-excel": "^2.5"
 
     },
     "require-dev": {
