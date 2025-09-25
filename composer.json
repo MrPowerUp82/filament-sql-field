@@ -20,7 +20,8 @@
     "require": {
         "php": "^8.2",
         "filament/forms": "^4.0",
-        "spatie/laravel-package-tools": "^1.15.0"
+        "spatie/laravel-package-tools": "^1.15.0",
+        "phpoffice/phpspreadsheet": "^5.1"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
