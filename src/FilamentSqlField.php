@@ -2,7 +2,7 @@
 
 namespace MrPowerUp\FilamentSqlField;
 
-use Cache;
+use Illuminate\Support\Facades\Cache;
 use Filament\Forms\Components\Field;
 use Illuminate\Support\Facades\DB;
 
