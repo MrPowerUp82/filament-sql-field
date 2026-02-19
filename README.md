@@ -59,6 +59,39 @@ public static function form(Form $form): Form
     }
 ```
 
+## Configuration
+
+You can publish the configuration file using:
+
+```bash
+php artisan vendor:publish --tag="filament-sql-field-config"
+```
+
+This will create a `config/filament-sql-field.php` file where you can customize the available SQL dialects and add predefined templates.
+
+### Dialects
+
+You can define which SQL dialects are available in the editor's "Change Meme" dropdown:
+
+```php
+'dialects' => [
+    'text/x-sql' => 'SQL',
+    'text/x-mysql' => 'MySQL',
+    // ...
+],
+```
+
+### Templates
+
+You can add predefined SQL templates that users can insert via the "Templates" dropdown:
+
+```php
+'templates' => [
+    'User Select' => 'SELECT * FROM users;',
+    'Active Orders' => 'SELECT * FROM orders WHERE status = \'active\';',
+],
+```
+
 ## MIME types defined
 
 - text/x-sql

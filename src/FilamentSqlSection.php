@@ -107,7 +107,7 @@ class FilamentSqlSection extends Section
                     Select::make('mime')
                         ->columnSpanFull()
                         ->required()
-                        ->options([
+                        ->options(config('filament-sql-field.dialects', [
                             'text/x-sql' => 'SQL',
                             'text/x-mysql' => 'MySQL',
                             'text/x-mariadb' => 'MariaDB',
@@ -122,7 +122,7 @@ class FilamentSqlSection extends Section
                             'text/x-sqlite' => 'SQLite',
                             'text/x-sparksql' => 'Spark SQL',
                             'text/x-trino' => 'Trino',
-                        ])
+                        ]))
                 ])
                 ->action(function (array $data): void {
                     if ($data['mime']) {
@@ -142,6 +142,36 @@ class FilamentSqlSection extends Section
                 })
                 ->color('info')
                 ->label(__('filament-sql-field::filament-sql-field.section.actions.changeMime.title')),
+
+            Action::make('templates')
+                ->icon('heroicon-o-document-text')
+                ->form([
+                    Select::make('template')
+                        ->label('Choose a Template')
+                        ->searchable()
+                        ->required()
+                        ->options(config('filament-sql-field.templates', []))
+                ])
+                ->action(function (array $data): void {
+                    if ($data['template']) {
+                        $templateSql = config('filament-sql-field.templates.' . $data['template']);
+                        if (!$templateSql) {
+                            // Fallback if key is used as value or simple array
+                            $templates = config('filament-sql-field.templates', []);
+                            $templateSql = $templates[$data['template']] ?? $data['template'];
+                        }
+
+                        $livewire = $this->getLivewire();
+                        $livewire->dispatch('updatePlugin', $templateSql, 'value');
+
+                        Notification::make()
+                            ->title('Template inserted')
+                            ->success()
+                            ->send();
+                    }
+                })
+                ->color('info')
+                ->label('Templates'),
 
             Action::make('format')
                 ->action(function (array $data): void {
@@ -205,6 +235,21 @@ class FilamentSqlSection extends Section
                                 $columns[$value] = $value;
                             }
                             return [
+                                // Grid::make(1)
+                                //     ->schema([
+                                //         Select::make('connection')
+                                //             ->allowHtml()
+                                //             ->selectablePlaceholder(false)
+                                //             ->options(function (Get $get, Section $component) {
+                                //                 return $component->getConnections();
+                                //             })
+                                //             ->default(config('database.default'))
+                                //             ->reactive()
+                                //             ->afterStateUpdated(function ($state, $component) {
+                                //                 $component->connection = $state;
+                                //                 Cache::put('filament-sql-field-connection', $state);
+                                //             }),
+                                //     ]),
                                 Repeater::make('columns')
                                     ->collapsed()
                                     ->schema([
@@ -246,7 +291,7 @@ class FilamentSqlSection extends Section
                     $columns = $data['columns'];
                     $query = "SELECT ";
                     $query .= implode(',', array_map(function ($item) {
-                        if ($item['useOnSelect']){
+                        if ($item['useOnSelect']) {
                             return $item['name'];
                         }
                     }, $columns));

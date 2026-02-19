@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="C:\data\www\apollon\filament-sql-field\phpunit.xml.dist" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="0.803400">
+    <testsuite name="MrPowerUp Test Suite" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="0.803400">
+      <testsuite name="Tests\FilamentSqlSectionTest" file="tests\FilamentSqlSectionTest.php" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="0.803400">
+        <testcase name="it uses configured templates" file="tests\FilamentSqlSectionTest.php::it uses configured templates" class="Tests\FilamentSqlSectionTest" classname="Tests.FilamentSqlSectionTest" assertions="1" time="0.775989"/>
+        <testcase name="it uses configured dialects" file="tests\FilamentSqlSectionTest.php::it uses configured dialects" class="Tests\FilamentSqlSectionTest" classname="Tests.FilamentSqlSectionTest" assertions="1" time="0.027411"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

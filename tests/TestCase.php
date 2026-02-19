@@ -24,4 +24,24 @@ class TestCase extends Orchestra
     {
         parent::setUp();
     }
+
+    protected function getPackageProviders($app)
+    {
+        return [
+            ActionsServiceProvider::class,
+            BladeCaptureDirectiveServiceProvider::class,
+            BladeHeroiconsServiceProvider::class,
+            BladeIconsServiceProvider::class,
+            FormsServiceProvider::class,
+            LivewireServiceProvider::class,
+            NotificationsServiceProvider::class,
+            SupportServiceProvider::class,
+            FilamentSqlFieldServiceProvider::class,
+        ];
+    }
+
+    public function getEnvironmentSetUp($app)
+    {
+        config()->set('database.default', 'testing');
+    }
 }
