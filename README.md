@@ -20,7 +20,7 @@ composer require mrpowerup/filament-sql-field "dev-filament-v4"
 You can install the package via composer:
 
 ```bash
-composer require mrpowerup/filament-sql-field
+composer require mrpowerup/filament-sql-field "dev-filament-v3"
 ```
 
 Or if you want to use 1.x version of the package you can use:
