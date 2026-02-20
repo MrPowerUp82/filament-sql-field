@@ -12,7 +12,7 @@
 You can install the package via composer:
 
 ```bash
-composer require mrpowerup/filament-sql-field "dev-filament-v5"
+composer require mrpowerup/filament-sql-field
 ```
 
 ## Installation Filament v4.x
