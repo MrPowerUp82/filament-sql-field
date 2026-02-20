@@ -7,6 +7,14 @@
 ![image](example_2.png)
 ![image](example_3.gif)
 
+## Installation Filament v5.x
+
+You can install the package via composer:
+
+```bash
+composer require mrpowerup/filament-sql-field "dev-filament-v5"
+```
+
 ## Installation Filament v4.x
 
 You can install the package via composer:
