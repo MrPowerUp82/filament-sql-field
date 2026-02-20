@@ -19,13 +19,14 @@ class FilamentSqlField extends Field
     {
         if ($this->connection === 'sqlite') {
             $tables = DB::connection($this->connection)->select("SELECT name FROM sqlite_master WHERE type='table'");
-            $tableNames = array_map(fn($table) => $table->name, $tables);
+            $tableNames = array_filter(array_map(fn($table) => $table->name, $tables));
             if (empty($tableNames)) {
                 return json_encode([]);
             }
             $tablesAndColumns = [];
             foreach ($tableNames as $table) {
-                $columns = DB::connection($this->connection)->select("PRAGMA table_info($table)");
+                if (empty($table)) continue;
+                $columns = DB::connection($this->connection)->select("PRAGMA table_info(\"$table\")");
                 $columnNames = array_map(fn($column) => $column->name, $columns);
                 $tablesAndColumns[$table] = $columnNames;
             }
